@@ -7,8 +7,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Non skeleton code prototypes
+int isUpper(char ch);
+int isLower(char ch);
+void formatString(char* str);
 
 
+// Previously Provided function definitions
 char toUpperCase(char ch){
   /*Convert ch to upper case, assuming it is in lower case currently*/
 	return ch-32;
@@ -30,9 +35,31 @@ int stringLength(char s[]) {
 }
 
 
+// Function created for better readability
 void camelCase(char* word){
 	/*Convert to camelCase*/
+
+	formatString(word);
+	char temp[100];
+	int j =0;
+	int inWord = 1;
 	
+	for(int i =0; i < stringLength(word); i++){
+		if(word[i] == '_'){
+			inWord = 0;
+		}
+		else if(inWord){
+			temp[j++] = isLower(word[i])? word[i]: toLowerCase(word[i]);
+		}
+		else{
+			temp[j++] = isUpper(word[i])? word[i]: toUpperCase(word[i]);
+			inWord = 1;
+		}
+	}
+
+	temp[j]= '\0';
+	for(int i =0; i <= stringLength(temp); i++)
+		word[i] = temp[i];
 	
 }
 
@@ -60,19 +87,18 @@ void formatString(char* str){
 
 	int insideWord = 0;
 	int j =0;
-	for(int i =0; str[i] != '\0'; i++){
+	for(int i =0; i<stringLength(str) ; i++){
 		if(isLetter(str[i])){
 			temp[j++] = isLower(str[i]) ? str[i]: toLowerCase(str[i]);
 			//temp[j++] = str[i];
 			insideWord = 1;
 		}
 
-		else if(insideWord){
+		else if(insideWord ){
 			temp[j++] = '_';
 			insideWord = 0;
 		}
 	}
-
 
 	temp[j] = '\0';
 	for(int i = 0; i <= j; i++)
@@ -83,62 +109,37 @@ void formatString(char* str){
 int isValid(char* str){
 	int firstAlpha = 0;
 	int spacing = 0;
-	for(int i =0; str[i] != '\0'; i++){
+	for(int i =0; i < stringLength(str); i++){
 		if(isLetter(str[i])){
 			if(firstAlpha == 0) 
 				firstAlpha = 1;
 			else if(firstAlpha == 1 && spacing == 1)
 				return 1; //Valid string of two letter groups
-		}
-		if(firstAlpha)
-			spacing = 1;
+		}	
+			else if(firstAlpha)
+				spacing = 1;
 	}
 	return 0;
 }
 
 
-void junk(char* str){	
-	char temp[100];
-
-	int insideWord = 0;
-	int firstWord = 1;
-	int firstAlpha = 1;
-	int j =0;
-	for(int i =0; str[i] != '\0'; i++){
-		if(isLetter(str[i])){
-			if(firstWord){
-				if(isUpper(str[i])) temp[j++] = toLowerCase(str[i]);
-				else temp[j++] = str[i];
-				firstWord = 0;
-				firstAlpha = 0;
-			}
-			else if(firstAlpha){
-				firstAlpha = 0;
-				if(isLower(str[i])) temp[j++] = toUpperCase(str[i]);
-				else temp[j++] = str[i];
-			}
-			else{
-				if(isUpper(str[i])) temp[j++] = toLowerCase(str[i]);
-				else temp[j++] = str[i];
-			}
-		}
-	}
-
-
-	free(str);
-	str = &temp;
-}
 int main(){
 	char input[100];
 	/*Read the string from the keyboard*/
 	printf("Please enter your words, 100 char limit\n");
 	scanf("%[^\n]", input);
-	formatString(input);
 	printf("Here: %s\n", input);
 	/*Call camelCase*/
-	
-	
-	/*Print the new string*/
+	if(isValid(input)){
+		camelCase(input);
+		
+		/*Print the new string*/
+		printf("Camel: %s\n", input);
+	}
+	else{
+		printf("invalid input string\n");
+	}
+
 	
 	
 	return 0;
