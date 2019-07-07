@@ -62,7 +62,8 @@ void formatString(char* str){
 	int j =0;
 	for(int i =0; str[i] != '\0'; i++){
 		if(isLetter(str[i])){
-			temp[j++] = str[i];
+			temp[j++] = isLower(str[i]) ? str[i]: toLowerCase(str[i]);
+			//temp[j++] = str[i];
 			insideWord = 1;
 		}
 
