@@ -12,9 +12,10 @@ void fooA(int* iptr){
   
      /*Print the value and address of the integer pointed to by iptr*/
     printf("The value of iptr is: %d  The address that iptr points to is: %p\n", *iptr, iptr);
+
      /*Increment the value of the integer pointed to by iptr by 5*/
-          
     (*iptr) += 5;
+
      /*Print the address of iptr itself*/
      printf("The address of iptr itself is: %p\n", &iptr);
 
@@ -30,7 +31,7 @@ void fooB(int* jptr){
 
 
      /*Decrement the address by 1 pointed to by jptr using jptr */
-     *jptr -= 1;
+     jptr -= 1;
       
      /*Print the address of jptr itself*/
     printf("The address of jptr itself is: %p\n", &jptr);
@@ -48,6 +49,7 @@ int main(){
     
     /*Print the value and address of x*/
     printf("The value of X is %d\n", x);
+    printf("The address of X is %p\n", &x);
     
     /*Call fooA() with the address of x*/
     fooA(&x);
@@ -57,7 +59,7 @@ int main(){
     //The value of X is different as we passed the address (pointer)
     //of the variable. FooA then could access the data that is pointed to.
     //This means that FooA recieves a copy of the address but actually acesses
-    //the value of X. 
+    //the value of X in memory. 
     
     /*Call fooB() with the address of x*/
     fooB(&x);
@@ -65,10 +67,9 @@ int main(){
     /*Print the value and address of x*/
     printf("The value of X after fooB is: %d ", x);
     printf("The address of X is: %p \n", &x);
-    //The address is the same as the other two times as 
-    //the variable was allocated memory and it keeps that memory
-    //until the end of the program. This is the reason we can 
-    //update the variable continiously by passing around the address
+    //The value of X is the same as before as we did no attempt to manipulate it
+    //in the function. The address remains the same as well as we only manipulated
+    //a copy of the pointer in fooB which is discarded when the function collapses.  
 
     
     return 0;

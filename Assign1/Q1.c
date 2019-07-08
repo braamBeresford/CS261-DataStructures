@@ -86,7 +86,7 @@ void deallocate(struct student* stud){
 }
 
 int main(){
-    struct student* stud = NULL;
+    struct student* stud = 0;
     
     /*Call allocate*/
     stud = allocate();
