@@ -16,7 +16,7 @@ int foo(int* a, int* b, int c){
     
     /*Decrement the value of integer variable c*/
 	c -= 1;
-    
+
     /*Return c*/
 	return c;
 }
@@ -48,11 +48,11 @@ int main(){
     
 // 4.a)
 //The value returned by foo() is different from Z because 
-//Z was copied when it was passed to foo. Any modification 
-//to Z inside foo is discarded when the function ends.
+//Z was copied (passed by value) when it was passed to foo. 
+//This copy was then decremented inside of foo.  
 //The return of foo copied the decremented integer 
-//from the function to main, resulting in a decremented
-//value being printed for the return value
+//from the function back to main and assigned to the new variable,
+//resulting in a decremented value being printed for the return value.
 
 //4.b)
 //The values of X and Y printed before and after the function

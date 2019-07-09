@@ -45,11 +45,11 @@ int main(){
     //Seed the random
     srand(time(0)); 
 
-    int x = rand()%10;
+    int x = rand()%11;
     
     /*Print the value and address of x*/
-    printf("The value of X is %d\n", x);
-    printf("The address of X is %p\n", &x);
+    printf("The value in main of X is %d\n", x);
+    printf("The address in main of X is %p\n", &x);
     
     /*Call fooA() with the address of x*/
     fooA(&x);
@@ -59,7 +59,8 @@ int main(){
     //The value of X is different as we passed the address (pointer)
     //of the variable. FooA then could access the data that is pointed to.
     //This means that FooA recieves a copy of the address but actually acesses
-    //the value of X in memory. 
+    //the value of X in memory. When fooA exits the copy of the pointer is 
+    //discaded but that doesn't matter as we access the X's memory address. 
     
     /*Call fooB() with the address of x*/
     fooB(&x);
@@ -69,9 +70,8 @@ int main(){
     printf("The address of X is: %p \n", &x);
     //The value of X is the same as before as we did no attempt to manipulate it
     //in the function. The address remains the same as well as we only manipulated
-    //a copy of the pointer in fooB which is discarded when the function collapses.  
+    //a copy of the pointer in fooB which is discarded when the function (fooB) collapses.  
 
-    
     return 0;
 }
 

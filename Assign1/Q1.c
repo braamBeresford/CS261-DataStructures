@@ -29,7 +29,7 @@ IDs being between 1 and 10, scores between 0 and 100*/
 	int i, j, temp;
 	srand(time(0));
 
-	//Use the Fisher-Yates shuffle
+	//Use the Fisher-Yates shuffle to mix the IDs
 	for(i = 9; i > 0; i-= 1){
 		j = rand()%(i+1);
 		temp = ids[i];
@@ -37,6 +37,7 @@ IDs being between 1 and 10, scores between 0 and 100*/
 		ids[j] = temp;
 	}
 	
+	//Generate random scores between 0 and 100 (inclusive)
 	for(i = 0; i < 9; i++){
 		students[i].id = ids[i];
 		students[i].score = rand()%101;
@@ -54,7 +55,7 @@ void output(struct student* students){
 
 	int i;
 	for(i = 0; i < 9; i+= 1){
-		printf("ID%d Score%d \n", students[i].id, students[i].score);
+		printf("ID: %d Score: %d \n", students[i].id, students[i].score);
 	}
 }
 

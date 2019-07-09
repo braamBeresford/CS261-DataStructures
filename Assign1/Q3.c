@@ -65,6 +65,7 @@ void camelCase(char* word){
 
 
 int isUpper(char ch){
+	//Check if character is upper case
 	if('A' <= ch && 'Z' >= ch)
 		return 1;
 	return 0;
@@ -72,25 +73,30 @@ int isUpper(char ch){
 
 
 int isLower(char ch){
+	//Check if character is lower case
 	if('a' <= ch && 'z' >= ch)
 		return 1;
 	return 0;
 }
 
 int isLetter(char ch){
+	//Check if character is a letter
 	if(isLower(ch) || isUpper(ch)) return 1;
 	return 0;
 }
 
-void formatString(char* str){	
+void formatString(char* str){
+	//Format string into word_word style
+
+	//Create temporary array of same size
 	char temp[100];
 
+	//Whether index is inside a word or not
 	int insideWord = 0;
 	int j =0;
 	for(int i =0; i<stringLength(str) ; i++){
 		if(isLetter(str[i])){
 			temp[j++] = isLower(str[i]) ? str[i]: toLowerCase(str[i]);
-			//temp[j++] = str[i];
 			insideWord = 1;
 		}
 
@@ -100,12 +106,15 @@ void formatString(char* str){
 		}
 	}
 
+	//Terminate temporary array with \0 like a regular string
 	temp[j] = '\0';
+
+	//Copy temp into str 
 	for(int i = 0; i <= j; i++)
 		str[i] = temp[i];
-	printf("Temp: %s\n", str);
 }
 
+//Check if there are at least two seperate letter groupings
 int isValid(char* str){
 	int firstAlpha = 0;
 	int spacing = 0;
@@ -128,7 +137,6 @@ int main(){
 	/*Read the string from the keyboard*/
 	printf("Please enter your words, 100 char limit\n");
 	scanf("%[^\n]", input);
-	printf("Here: %s\n", input);
 	/*Call camelCase*/
 	if(isValid(input)){
 		camelCase(input);
