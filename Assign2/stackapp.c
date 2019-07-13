@@ -25,14 +25,43 @@ char nextChar(char* s)
 		return c;
 }
 
+int checkParity(DynArr* stk, char strVal){
+	if(topDynArr(stk) != strVal) {
+		return 0;
+	}
+	else {
+		popDynArr(stk);
+		return 1;
+	}
+}
+
+
 /* Checks whether the (), {}, and [] are balanced or not
 	param: 	s pointer to a string 	
-	pre: 	
+	pre: 
 	post:	
 */
 int isBalanced(char* s)
 {
-	/* FIXME: You will write this function */		
+	DynArr* stk = newDynArr(10);
+	assert(stk);
+
+	char cur;
+	while((cur=nextChar(s))){
+		if(cur == '[' || cur == '{' || cur == '(') 
+			pushDynArr(stk, '[');
+		else if(cur == ']' && !isEmptyDynArr(stk)){
+			if(!checkParity(stk, ']')) return 0;
+		} 
+		else if(cur == '}' && !isEmptyDynArr(stk)){
+			if(!checkParity(stk, '}')) return 0;
+		}
+		else if(cur == ')' && !isEmptyDynArr(stk)){
+			if(!checkParity(stk, ')')) return 0;
+		}
+		
+	}
+	if(isEmptyDynArr(stk)) return 1;
 	return 0;
 }
 
@@ -42,7 +71,7 @@ int main(int argc, char* argv[]){
 	int res;
 	
 	printf("Assignment 2\n");
-
+	// printf("%s", s);
 	res = isBalanced(s);
 
 	if (res)
