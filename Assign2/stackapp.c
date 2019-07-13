@@ -81,7 +81,8 @@ int main(int argc, char* argv[]){
 	
 	printf("Assignment 2\n");
 	// printf("%s", s);
-	res = isBalanced(s);
+	if(s == NULL) res = 1;
+	else res = isBalanced(s);
 
 	if (res)
 		printf("The string %s is balanced\n",s);
