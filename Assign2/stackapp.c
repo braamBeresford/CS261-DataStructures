@@ -48,17 +48,26 @@ int isBalanced(char* s)
 
 	char cur;
 	while((cur=nextChar(s))){
-		if(cur == '[' || cur == '{' || cur == '(') 
-			pushDynArr(stk, '[');
-		else if(cur == ']' && !isEmptyDynArr(stk)){
-			if(!checkParity(stk, ']')) return 0;
+		if(cur == '[') 
+			pushDynArr(stk, ']');
+		else if(cur== '{'){
+			pushDynArr(stk, '}');
+		}
+		else if(cur== '('){
+			pushDynArr(stk, ')');
+		}
+		else if(cur == ']' || cur == '}' || cur == ')' ){
+			if(isEmptyDynArr(stk)) return 0;
+
+			if(!checkParity(stk, cur)) return 0;
 		} 
-		else if(cur == '}' && !isEmptyDynArr(stk)){
-			if(!checkParity(stk, '}')) return 0;
-		}
-		else if(cur == ')' && !isEmptyDynArr(stk)){
-			if(!checkParity(stk, ')')) return 0;
-		}
+		
+		// else if(cur == '}' && !isEmptyDynArr(stk)){
+		// 	if(!checkParity(stk, '}')) return 0;
+		// }
+		// else if(cur == '}'  && !isEmptyDynArr(stk)){
+		// 	if(!checkParity(stk, ')')) return 0;
+		// }
 		
 	}
 	if(isEmptyDynArr(stk)) return 1;
