@@ -38,4 +38,7 @@ a.out*
 # Vim files 
 *~
 
+*
+
+!*.c
 *DS*
