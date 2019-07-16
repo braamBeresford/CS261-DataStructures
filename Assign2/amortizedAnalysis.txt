@@ -1,0 +1,22 @@
+1. To execute 50 consecutive we know there will be at least 50 units of time
+to do the assignment from the push operations. The array will have to resize
+from 8 to 16, 16 to 32, and 32 to 64. During these reallocations 8 + 16 + 32=
+56 values will have to copied from their respective smaller arrays to their
+larger. In total 56 + 50 units of time will elapse for a total of 106. This
+operation is O(1)+ as generally a new value can be added onto the end but
+there is a chance that the array would need to be resized. This resizing
+become more rare the larger it is as it doubles its size on every reallocation. 
+
+2. This analysis is more computationally difficult as there are considerably
+more resizes due to the resizing stategy. Generally a method for calculation
+can be found by applying a few of the simpler calculations and looking for a
+patter. If there were to be 12 consecutive pushes the total number of time
+units would be 18 + 12 = 30 units. For 14 pushes it would be 30 + 14 = 44
+units. For 16 pushes it would be 44 + 16 = 60 units. It becomes clear that to
+calculate the total number of pushes we need to sum all even number between
+the initial array size (8) and the total number of pushes - 2 inclusive (10, 12, 14, or
+48). Using a simple script this total for 50 pushes to 638 units of time.
+An array that increases by constant 2 is the same as creating a new array plus
+1 as n goes to infinity. If on every other addition to the array your array
+must resize with complexity n, the n will dominate resulting in an O(n)
+overall time complexity. 
