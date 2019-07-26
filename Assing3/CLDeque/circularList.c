@@ -286,9 +286,14 @@ int circularListIsEmpty(struct CircularList* deque)
 void circularListPrint(struct CircularList* deque)
 {
 	/* FIXME: You will write this function */
+	if(circularListIsEmpty(deque)){
+		printf("List is empty\n");
+		return;
+	}
 	struct Link* curr = deque->sentinel->next;
 	while(curr != deque->sentinel){
-		printf("%f ", curr->value);
+		printf(FORMAT_SPECIFIER, curr->value);
+		printf(" ");
 		curr=curr->next;
 	}
 	printf("\n");
