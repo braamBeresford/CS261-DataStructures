@@ -36,10 +36,8 @@
 a.out*
 
 # Vim files 
+
 *~
-
-*
-
-!*.c
-!*.txt
+prog
+testda
 *DS*
