@@ -158,7 +158,7 @@ void circularListDestroy(struct CircularList* deque)
 {
 	/* FIXME: You will write this function */
 	struct Link* curr = deque->sentinel->next;
-	while(curr != deque->sentinel){
+	while(!circularListIsEmpty(deque)){
 		removeLink(deque, curr);
 		curr = curr->next;
 	}
