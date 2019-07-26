@@ -153,6 +153,7 @@ void linkedListDestroy(struct LinkedList* list)
 	while (!linkedListIsEmpty(list)) {
 		linkedListRemoveFront(list);
 	}
+	printf("Size: %d\n", list->size);
 	free(list->frontSentinel);
 	free(list->backSentinel);
 	free(list);
@@ -253,7 +254,7 @@ void linkedListRemoveBack(struct LinkedList* deque)
 int linkedListIsEmpty(struct LinkedList* deque)
 {
 	/* FIXME: You will write this function */
-	return (deque->frontSentinel->next == deque->backSentinel);//deque->size > 0
+	return (deque->size == 0);
 
 }
 
