@@ -162,6 +162,11 @@ void circularListDestroy(struct CircularList* deque)
 		removeLink(deque, curr);
 		curr = curr->next;
 	}
+	
+	free(deque->sentinel);
+	deque->sentinel = NULL;
+	free(deque);
+	deque = NULL;
 
 }
 
