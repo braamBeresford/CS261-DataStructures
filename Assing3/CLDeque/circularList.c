@@ -157,6 +157,7 @@ struct CircularList* circularListCreate()
 void circularListDestroy(struct CircularList* deque)
 {
 	/* FIXME: You will write this function */
+	assert(deque);
 	struct Link* curr = deque->sentinel->next;
 	struct Link* temp;
 	while(!circularListIsEmpty(deque)){
@@ -168,6 +169,7 @@ void circularListDestroy(struct CircularList* deque)
 	
 	free(deque->sentinel);
 	deque->sentinel = NULL;
+
 	free(deque);
 	deque = NULL;
 
