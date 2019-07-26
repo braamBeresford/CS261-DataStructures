@@ -270,6 +270,7 @@ void circularListRemoveBack(struct CircularList* deque)
 int circularListIsEmpty(struct CircularList* deque)
 {
 	/* FIXME: You will write this function */
+	assert(deque);
 	return(deque->size == 0);
 
 }
