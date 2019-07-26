@@ -67,7 +67,9 @@ static void init(struct LinkedList* list) {
 	/* FIXME: You will write this function */
 	list->size = 0;
 	list->frontSentinel = malloc(sizeof(struct Link));
+	assert(list->frontSentinel);
 	list->backSentinel = malloc(sizeof(struct Link));
+	assert(list->backSentinel);
 	list->backSentinel->next = NULL;
 	list->frontSentinel->prev = NULL;
 	list->frontSentinel->next = list->backSentinel;
@@ -88,8 +90,10 @@ static void init(struct LinkedList* list) {
  */
 static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value)
 {
-	/* FIXME: You will write this function */
+	/* FIXME: You will write this function */\
+	assert(list);
 	struct Link* newLink = malloc(sizeof(struct Link));
+	assert(newLink);
 	newLink->value = value;
 	newLink->next = link;
 	newLink->prev = link->prev;
@@ -112,6 +116,7 @@ static void addLinkBefore(struct LinkedList* list, struct Link* link, TYPE value
 static void removeLink(struct LinkedList* list, struct Link* link)
 {
 	/* FIXME: You will write this function */
+	assert(list);
 	link->prev->next = link->next;
 	link->next->prev = link->prev;
 	free(link);
@@ -248,7 +253,7 @@ void linkedListRemoveBack(struct LinkedList* deque)
 int linkedListIsEmpty(struct LinkedList* deque)
 {
 	/* FIXME: You will write this function */
-	return (deque->size > 0);
+	return (deque->frontSentinel->next == deque->backSentinel);//deque->size > 0
 
 }
 
