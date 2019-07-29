@@ -151,11 +151,19 @@ TYPE listQueueFront(struct Queue* queue)
 TYPE listQueueRemoveFront(struct Queue* queue)
 {
 	/* FIXME: You will write this function */
+	assert(queue);
 	TYPE frontVal = listQueueFront(queue);
-	struct Link* temp = queue->head->next->next;
+	struct Link* temp = queue->head->next;
 
-	free(queue->head->next);
-	queue->head->next = temp;
+	
+	if(queue->head->next == queue->tail){
+		queue->tail = queue->head;
+		queue->head->next = NULL;
+	}else{
+		queue->head->next = queue->head->next->next;
+
+	}
+	free(temp);
 	return frontVal;
 
 }
@@ -296,7 +304,9 @@ void listStackPush(struct Stack* stack, TYPE value)
 	/* FIXME: You will write this function */
 	listQueueAddBack(stack->q2, value);
 	
+
 	while(!listQueueIsEmpty(stack->q1)){
+		
 		int temp = listQueueRemoveFront(stack->q1);
 		listQueueAddBack(stack->q2, temp);
 	}
@@ -355,7 +365,8 @@ int main()
 	printf("stack init...\n");
 	assertTrue(listStackIsEmpty(s) == 1, "stackIsEmpty == 1");
 
-	printf("\npushing 4, 5, -300...\n");
+	printf("\npushing 4, 5, -300....\n");
+	printf("I'm ehre!!!!!\n");
 	listStackPush(s, 4);
 	listStackPush(s, 5);
 	listStackPush(s, -300);
