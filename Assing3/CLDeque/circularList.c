@@ -62,6 +62,7 @@ static void init(struct CircularList* deque)
 
 	deque->sentinel->next= deque->sentinel;
 	deque->sentinel->prev = deque->sentinel;
+	deque->size = 0;
 
 }
 
