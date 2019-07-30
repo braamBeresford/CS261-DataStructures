@@ -366,7 +366,6 @@ int main()
 	assertTrue(listStackIsEmpty(s) == 1, "stackIsEmpty == 1");
 
 	printf("\npushing 4, 5, -300....\n");
-	printf("I'm ehre!!!!!\n");
 	listStackPush(s, 4);
 	listStackPush(s, 5);
 	listStackPush(s, -300);
