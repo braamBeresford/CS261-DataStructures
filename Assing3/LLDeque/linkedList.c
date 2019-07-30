@@ -333,10 +333,13 @@ void linkedListRemove(struct LinkedList* bag, TYPE value)
 {
 	/* FIXME: You will write this function */
 	struct Link* curr = bag->frontSentinel->next;
+	struct Link* next;
 	while(curr != bag->backSentinel){
+		next = curr->next;
 		if(curr->value == value){
 			removeLink(bag, curr);
+			return;
 		}
-		curr = curr->next;
+		curr = next;
 	}
 }
