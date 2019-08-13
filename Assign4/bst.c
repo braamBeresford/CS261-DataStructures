@@ -609,6 +609,7 @@ points */
     printf("\n");
     testRemoveNode();
 
+    //Test print
     printf("\n test print\n");
     struct TestValues *tv = createValues();
     struct BSTree *tree = newBSTree();
@@ -619,6 +620,9 @@ points */
     }
 
     print_type(_leftMost(tree->root));
+
+    deleteBSTree(tree);
+    destroyValues(tv);
 
     return 0;
 }
