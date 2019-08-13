@@ -44,4 +44,7 @@ int compare(TYPE left, TYPE right)
 void print_type(TYPE curval)
 {
     /*FIXME: write this*/
+
+    struct data *temp = (struct data *)curval;
+    printf("Name: %s \t Number: %d\n", temp->name, temp->number);
 }

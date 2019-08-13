@@ -609,6 +609,17 @@ points */
     printf("\n");
     testRemoveNode();
 
+    printf("\n test print\n");
+    struct TestValues *tv = createValues();
+    struct BSTree *tree = newBSTree();
+
+    for (int i = 0; i < tv->n; ++i)
+    {
+        addBSTree(tree, &(tv->values[i]));
+    }
+
+    print_type(_leftMost(tree->root));
+
     return 0;
 }
 
